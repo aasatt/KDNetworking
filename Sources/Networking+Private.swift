@@ -125,7 +125,10 @@ extension Networking {
     }
 
     func handleDataOrImageRequest(_ requestType: RequestType, path: String, cacheName: String?, parameterType: ParameterType?, parameters: Any?, parts: [FormDataPart]?, responseType: ResponseType, completion: @escaping (_ response: Any?, _ response: HTTPURLResponse, _ error: NSError?) -> Void) -> String {
-        let object = objectFromCache(for: path, cacheName: cacheName, responseType: responseType)
+        var object: Any?
+        if self.session.configuration != URLSessionConfiguration.ephemeral {
+            object = objectFromCache(for: path, cacheName: cacheName, responseType: responseType)
+        }
         if let object = object {
             let requestID = UUID().uuidString
 

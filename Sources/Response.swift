@@ -37,7 +37,7 @@ public class JSONResponse: Response {
         return json.array
     }
 
-    init(json: JSON, response: HTTPURLResponse) {
+    public init(json: JSON, response: HTTPURLResponse) {
         self.json = json
 
         super.init(response: response)
@@ -49,7 +49,7 @@ public class SuccessJSONResponse: JSONResponse { }
 public class FailureJSONResponse: JSONResponse {
     public let error: NSError
 
-    init(json: JSON, response: HTTPURLResponse, error: NSError) {
+    public init(json: JSON, response: HTTPURLResponse, error: NSError) {
         self.error = error
 
         super.init(json: json, response: response)
@@ -69,7 +69,7 @@ public class SuccessImageResponse: Response {
 public class SuccessDataResponse: Response {
     public let data: Data
 
-    init(data: Data, response: HTTPURLResponse) {
+    public init(data: Data, response: HTTPURLResponse) {
         self.data = data
 
         super.init(response: response)
